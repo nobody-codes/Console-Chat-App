@@ -1,0 +1,16 @@
+-- client
+    -- username setup
+        -- unique
+    -- selection
+        -- create room
+            -- setup unique
+        -- join room
+            -- room code
+-- server
+    -- {room : [clients]} && {room : [messages]}
+    -- rooms
+        -- unique code
+        -- members [clients]
+    -- clients
+    -- messages
+        -- client -> server -> room clients
