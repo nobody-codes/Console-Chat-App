@@ -9,7 +9,7 @@ def create_socket():
         global host
         global port
         global server
-        host = ""
+        host = "0.0.0.0"
         port = 9999
         server = socket.socket()
 
