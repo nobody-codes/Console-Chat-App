@@ -26,8 +26,8 @@ def connect_socket():
         print(f"Socket Connection error: {str(msg)}")
     
 def start_chat(client):
-    try:
-        while True:
+    while True:
+        try:
             server_response = client.recv(1024).decode("utf-8")
             if server_response == 'server: quit':
                 print("Sever: Ended Chat")
@@ -41,8 +41,8 @@ def start_chat(client):
                     print("client: Ended Chat")
                     client.close()
                     break
-    except socket.error as msg:
-        print(f"Chat Communication error : {str(msg)}")
+        except socket.error as msg:
+            print(f"Chat Communication error : {str(msg)}")
 
 
 def main():

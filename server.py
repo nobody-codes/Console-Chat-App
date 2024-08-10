@@ -34,7 +34,6 @@ def bind_socket():
 
 
 # Establish connection with a client (socket must be listening)
-
 def socket_accept():
     try:
         conn, address = server.accept()
