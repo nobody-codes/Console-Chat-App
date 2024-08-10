@@ -38,14 +38,14 @@ def bind_socket():
 def socket_accept():
     try:
         conn, address = server.accept()
-        print("Connection has been established! |" + " IP " + address[0] + " | Port" + str(address[1]))
+        print(f"Connection has been established! | IP {address[0]} | Port {str(address[1])}")
         start_chat(conn) # start chat with client
         conn.close()
     except socket.error as msg:
         print(f"Socket Accecpting error {str(msg)} \n Retrying...")
         socket_accept()
 
-# Send commands to client/victim or a friend
+# Send messages to client or a friend
 def start_chat(conn):
     while True:
         message = input("Type message: ")
