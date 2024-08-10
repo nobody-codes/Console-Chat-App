@@ -1,30 +1,23 @@
 import socket
-import os
-import subprocess
-
-s = socket.socket()
+import sys
+client = socket.socket()
 host = '192.168.1.10'
 port = 9999
 
-s.connect((host, port))
+client.connect((host, port))
 
 while True:
-    data = s.recv(1024)
-    if data == 'quit':
-        s.close()
-    # if data[:2].decode("utf-8") == 'cd':
-    #     os.chdir(data[3:].decode("utf-8"))
-
-    # if len(data) > 0:
-    #     cmd = subprocess.Popen(data[:].decode("utf-8"),shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
-    #     output_byte = cmd.stdout.read() + cmd.stderr.read()
-    #     output_str = str(output_byte,"utf-8")
-    #     currentWD = os.getcwd() + "> "
-    #     s.send(str.encode(output_str + currentWD))
-    
-    print(data.decode("utf-8"))
-    s.send(str.encode("none"))
-    # try:
-    #     msg = input("Type message : ")
-    # except:
-    #     pass
+    server_response = client.recv(1024).decode("utf-8")
+    if server_response == 'server: quit':
+        print("Sever: Ended Chat")
+        client.close()
+        break
+    else:
+        print(server_response)
+        send_msg = input("Type message: ")
+        client.send(str.encode("client: "+send_msg))
+        if send_msg == 'quit':
+            print("client: Ended Chat")
+            client.close()
+            break
+            
